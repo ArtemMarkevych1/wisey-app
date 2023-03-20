@@ -29,55 +29,56 @@ const SingleCoursePage = () => {
         loadingCourse
             ? <Loader/>
             : <SingleCourseWrapper>
-                <div className="course-intro mx-auto grid">
-                    <div className="course-img">
-                        <img
-                            src={previewImageLink + '/cover.webp'}
-                            alt={title}
-                        />
-                    </div>
-                    <div className="course-details">
-                        <div
-                            className="course-category bg-white text-dark text-capitalize fw-6 fs-12 d-inline-block">
-                            {tags.join(', ')}
+                {data && <>
+                    <div className="course-intro mx-auto grid">
+                        <div className="course-img">
+                            <img
+                                src={previewImageLink + '/cover.webp'}
+                                alt={title}
+                            />
                         </div>
+                        <div className="course-details">
+                            <div
+                                className="course-category bg-white text-dark text-capitalize fw-6 fs-12 d-inline-block">
+                                {tags.join(', ')}
+                            </div>
 
-                        <div className="course-head">
-                            <h5>{title}</h5>
-                        </div>
+                            <div className="course-head">
+                                <h5>{title}</h5>
+                            </div>
 
-                        <div className="course-body">
-                            <p className="course-para fs-18">{description}</p>
-                            <div className="course-rating flex">
+                            <div className="course-body">
+                                <p className="course-para fs-18">{description}</p>
+                                <div className="course-rating flex">
                               <span className="rating-count fw-5 fs-14">
                               Rating: {rating} / 5
                           </span>
-                            </div>
+                                </div>
 
-                            {meta.skills && <>
-                                <p className="course-para fs-18 mt-40">This course will help you with:</p>
-                                <ul className="course-info">
-                                    {meta.skills.map(skill => {
-                                        return (
-                                            <li>
-                                                - {skill};
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
-                            </>}
+                                {meta.skills && <>
+                                    <p className="course-para fs-18 mt-40">This course will help you with:</p>
+                                    <ul className="course-info">
+                                        {meta.skills.map(skill => {
+                                            return (
+                                                <li>
+                                                    - {skill};
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
+                                </>}
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div className="course-full bg-white text-dark">
 
-                <div className="course-full bg-white text-dark">
-
-                    <div className="course-content mx-auto">
-                        <div className="course-sc-title">Course content</div>
-                        <ProgressBar lessons={lessons}/>
-                        <LessonsList lessons={lessons}/>
+                        <div className="course-content mx-auto">
+                            <div className="course-sc-title">Course content</div>
+                            <ProgressBar lessons={lessons}/>
+                            <LessonsList lessons={lessons}/>
+                        </div>
                     </div>
-                </div>
+                </>}
             </SingleCourseWrapper>
     )
 }

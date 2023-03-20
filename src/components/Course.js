@@ -23,47 +23,50 @@ const Course = (props) => {
 
     return (
         <CourseCard>
-            <div className="card-image-container"
-                 onMouseEnter={() => handleCardHover(id)}
-                 onMouseLeave={handleCardLeave}
-            >
-                <img className="card-image" alt=""
-                     src={previewImageLink + '/cover.webp'}
-                />
-                {hoveredCardId === id && (
-                    <div className="card-video-container">
-                        <div className="video-wrapper">
-                            <ReactHlsPlayer
-                                className="card-video"
-                                src={meta.courseVideoPreview.link}
-                                autoPlay={true}
-                                controls={false}
-                                muted
-                                playerRef={playerRef}/>
+            {props && <>
+                <div className="card-image-container"
+                     onMouseEnter={() => handleCardHover(id)}
+                     onMouseLeave={handleCardLeave}
+                >
+                    <img className="card-image" alt=""
+                         src={previewImageLink + '/cover.webp'}
+                    />
+                    {hoveredCardId === id && (
+                        <div className="card-video-container">
+                            <div className="video-wrapper">
+                                <ReactHlsPlayer
+                                    className="card-video"
+                                    src={meta?.courseVideoPreview?.link}
+                                    autoPlay={true}
+                                    controls={false}
+                                    muted
+                                    playerRef={playerRef}/>
+                            </div>
                         </div>
-                    </div>
-                )}
-            </div>
-
-            <div className="item-body">
-                <h5 className="item-name">{title}</h5>
-                <span className="item-creator">Lessons count: {lessonsCount}</span>
-                <div className="item-rating flex">
-                    <span className="item-creator">Rating of course: {rating} / 5</span>
+                    )}
                 </div>
-                <div className="item-rating flex">
+
+                <div className="item-body">
+                    <h5 className="item-name">{title}</h5>
+                    <span className="item-creator">Lessons count: {lessonsCount}</span>
+                    <div className="item-rating flex">
+                        <span className="item-creator">Rating of course: {rating} / 5</span>
+                    </div>
+                    <div className="item-rating flex">
                     <span className="item-creator">Skills:
+
                         <ul>
                             {
-                                meta.skills.map(skill => <li key={skill}>{skill}</li>)
+                                meta?.skills?.map(skill => <li key={skill}>{skill}</li>)
                             }
                         </ul>
                     </span>
+                    </div>
                 </div>
-            </div>
-            <div className="item-btns flex">
-                <Link to={`/${id}`} className="item-btn see-details-btn">See details</Link>
-            </div>
+                <div className="item-btns flex">
+                    <Link to={`/${id}`} className="item-btn see-details-btn">See details</Link>
+                </div>
+            </>}
         </CourseCard>
     )
 }
@@ -78,10 +81,6 @@ const CourseCard = styled.div`
   .card-image-container {
     position: relative;
     height: 160px;
-    //height: 33%;
-
-    //max-height: 160px;
-    //height: 100%;
 
     img {
       height: 100%;
@@ -99,12 +98,8 @@ const CourseCard = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    //height: auto;
     padding-top: 56.25%;
-
     height: 160px;
-    //height: 100%;
-    //height: 33%;
   }
 
   .card-video {
@@ -124,12 +119,6 @@ const CourseCard = styled.div`
     height: 100%;
     overflow: hidden;
   }
-
-  //.card-video {
-  //  width: 100%;
-  //  height: 100%;
-  //  object-fit: cover;
-  //}
 
   .item-img {
     height: 175px;

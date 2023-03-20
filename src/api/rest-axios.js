@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 export const axiosRest = axios.create({
-    // baseURL: process.env.REACT_APP_API_ENDPOINT
-    baseURL: "https://api.wisey.app/api/v1"
+    baseURL: process.env.REACT_APP_API_ENDPOINT
 });
 
 axiosRest.interceptors.request.use(

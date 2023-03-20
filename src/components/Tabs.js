@@ -26,12 +26,13 @@ const Tabs = () => {
         window.scrollTo({top: 380, behavior: 'smooth'});
     }
 
-    const displayedData = data.slice(
+    const displayedData = data?.slice(
         pageNumber * itemsPerPage,
         (pageNumber + 1) * itemsPerPage
     );
 
-    const renderedData = displayedData.map(course => <Course key={course.id} {...course}/>)
+    const renderedData = displayedData?.map(course => <Course
+        key={course.id} {...course}/>)
 
     return (
         <TabsWrapper>
@@ -59,7 +60,6 @@ const Tabs = () => {
                 }
             </div>
         </TabsWrapper>
-
     )
 }
 
