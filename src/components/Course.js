@@ -23,7 +23,7 @@ const Course = (props) => {
 
     return (
         <CourseCard>
-            {props && props && Object.entries(props).length > 0 && <>
+            {props && Object.entries(props).length > 0 && <>
                 <div className="card-image-container"
                      onMouseEnter={() => handleCardHover(id)}
                      onMouseLeave={handleCardLeave}
