@@ -29,7 +29,7 @@ const SingleCoursePage = () => {
         loadingCourse
             ? <Loader/>
             : <SingleCourseWrapper>
-                {data && <>
+                {data && Object.entries(data).length > 0 && <>
                     <div className="course-intro mx-auto grid">
                         <div className="course-img">
                             <img
