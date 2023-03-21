@@ -60,7 +60,7 @@ const SingleCoursePage = () => {
                                     <ul className="course-info">
                                         {meta.skills.map(skill => {
                                             return (
-                                                <li>
+                                                <li key={skill}>
                                                     - {skill};
                                                 </li>
                                             )
