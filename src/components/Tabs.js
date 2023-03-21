@@ -34,6 +34,12 @@ const Tabs = () => {
     const renderedData = displayedData?.map(course => <Course
         key={course.id} {...course}/>)
 
+    const disablePrevNextButtons = () => {
+        return pageNumber === 0 || pageNumber === pageCount - 1
+    }
+
+    const prevNextClassName = disablePrevNextButtons() ? 'disabled' : '';
+
     return (
         <TabsWrapper>
             <div className="tabs">
@@ -54,7 +60,8 @@ const Tabs = () => {
                             onPageChange={handlePageClick}
                             containerClassName={'pagination'}
                             activeClassName={'active'}
-                            disablePrevNextButtons={pageNumber === 0 || pageNumber === pageCount - 1}
+                            previousLinkClassName={prevNextClassName}
+                            nextLinkClassName={prevNextClassName}
                         />
                     </>
                 }
@@ -107,7 +114,7 @@ const TabsWrapper = styled.div`
       }
     }
   }
-
+  
   .pagination {
     margin: 15px auto;
     display: flex;
@@ -128,18 +135,33 @@ const TabsWrapper = styled.div`
     cursor: pointer;
   }
 
-  .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  .pagination > .active > a,
+  .pagination > .active > span,
+  .pagination > .active > a:hover,
+  .pagination > .active > span:hover,
+  .pagination > .active > a:focus,
+  .pagination > .active > span:focus {
     background-color: var(--clr-dark);
     border-color: var(--clr-dark);
     outline: none;
   }
 
-  .pagination > li > a, .pagination > li > span {
+  .pagination > li > a,
+  .pagination > li > span {
     color: var(--clr-dark)
   }
 
-  .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span {
+  .pagination > li:first-child > a,
+  .pagination > li:first-child > span,
+  .pagination > li:last-child > a,
+  .pagination > li:last-child > span {
     border-radius: unset
+  }
+
+  .pagination > .disabled > a,
+  .pagination > .disabled > span {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 `;
 
