@@ -31,19 +31,23 @@ const Course = (props) => {
                     <img className="card-image" alt=""
                          src={previewImageLink + '/cover.webp'}
                     />
-                    {hoveredCardId === id && (
-                        <div className="card-video-container">
-                            <div className="video-wrapper">
-                                <ReactHlsPlayer
-                                    className="card-video"
-                                    src={meta?.courseVideoPreview?.link}
-                                    autoPlay={true}
-                                    controls={false}
-                                    muted
-                                    playerRef={playerRef}/>
+                    {
+                        hoveredCardId === id &&
+                        meta &&
+                        meta?.courseVideoPreview?.link.length > 0 &&
+                        (
+                            <div className="card-video-container">
+                                <div className="video-wrapper">
+                                    <ReactHlsPlayer
+                                        className="card-video"
+                                        src={meta?.courseVideoPreview?.link}
+                                        autoPlay={true}
+                                        controls={false}
+                                        muted
+                                        playerRef={playerRef}/>
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )}
                 </div>
 
                 <div className="item-body">
@@ -54,12 +58,12 @@ const Course = (props) => {
                     </div>
                     <div className="item-rating flex">
                     <span className="item-creator">Skills:
-
-                        <ul>
-                            {
-                                meta?.skills?.map(skill => <li key={skill}>{skill}</li>)
-                            }
-                        </ul>
+                        {meta && meta?.skills?.length > 0
+                            ? <ul>
+                                {meta?.skills?.map(skill => <li key={skill}>{skill}</li>)}
+                            </ul>
+                            : <p>No skills provided.</p>
+                        }
                     </span>
                     </div>
                 </div>
